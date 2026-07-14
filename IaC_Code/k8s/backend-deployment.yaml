@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cms-backend
+  labels:
+    app: cms-backend
+spec:
+  replicas: 2 # Chạy 2 bản sao để đảm bảo High Availability
+  selector:
+    matchLabels:
+      app: cms-backend
+  template:
+    metadata:
+      labels:
+        app: cms-backend
+    spec:
+      containers:
+      - name: cms-backend
+        image: nginx:latest # (Lưu ý: Chỗ này dùng tạm image nginx để test, thực tế sẽ thay bằng Docker Image Backend của bạn)
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DB_HOST
+          value: "CHỜ_LẤY_ENDPOINT_TỪ_AWS_RDS" # Chút nữa Terraform chạy xong, ta lấy Endpoint dán vào đây
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_USER
+          value: "dbadmin"
+        - name: DB_PASS
+          value: "VtiAcademy123!"
+        - name: DB_NAME
+          value: "cmsdb97"

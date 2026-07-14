@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cms-frontend
+  labels:
+    app: cms-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cms-frontend
+  template:
+    metadata:
+      labels:
+        app: cms-frontend
+    spec:
+      containers:
+      - name: cms-frontend
+        image: nginx:alpine 
+        ports:
+        - containerPort: 80 # Đã sửa thành 80
+        env:
+        - name: API_URL
+          value: "http://backend-service:8000"

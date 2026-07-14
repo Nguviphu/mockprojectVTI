@@ -1,0 +1,15 @@
+# Bỏ qua các file cài đặt nội bộ của Terraform
+**/.terraform/*
+.terraform.lock.hcl
+
+# BỎ QUA FILE STATE (QUAN TRỌNG NHẤT)
+*.tfstate
+*.tfstate.*
+
+# Bỏ qua các file chứa biến nhạy cảm
+*.tfvars
+*.tfvars.json
+
+# Bỏ qua file rác của hệ điều hành
+.DS_Store
+Thumbs.db
