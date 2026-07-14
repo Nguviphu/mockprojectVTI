@@ -15,8 +15,8 @@ spec:
         app: cms-frontend
     spec:
       containers:
-      - name: cms-frontend
-        image: nginx:alpine 
+      - name: frontend
+        image: cms-97-frontend:latest 
         ports:
         - containerPort: 80 # Đã sửa thành 80
         env:
