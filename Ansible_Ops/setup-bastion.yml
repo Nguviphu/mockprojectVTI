@@ -1,0 +1,31 @@
+---
+- name: Standardize Bastion Host / Ops Server
+  hosts: bastion_hosts
+  become: yes
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install essential DevOps packages
+      apt:
+        name: ['curl', 'unzip', 'git', 'jq']
+        state: present
+
+    - name: Install AWS CLI v2
+      unarchive:
+        src: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+        dest: /tmp
+        remote_src: yes
+      register: aws_download
+
+    - name: Run AWS install script
+      command: /tmp/aws/install --update
+      when: aws_download.changed
+
+    - name: Install Kubectl for Kubernetes management
+      shell: |
+        curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+        install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+      args:
+        creates: /usr/local/bin/kubectl

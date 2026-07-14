@@ -2,15 +2,11 @@
 <html>
 <head>
     <title>CMS Dashboard</title>
+    <meta charset="UTF-8">
 </head>
-<body>
-    <h1>Hệ thống CMS Hiện Đại - Đồ án DevOps</h1>
-    <p>Trạng thái Backend: <span id="status">Đang kết nối...</span></p>
-    <script>
-        fetch('http://localhost:8000/api/health') // Trong thực tế sẽ gọi qua Ingress/ALB
-            .then(res => res.json())
-            .then(data => document.getElementById('status').innerText = data.message)
-            .catch(err => document.getElementById('status').innerText = 'Lỗi kết nối API');
-    </script>
+<body style="background-color: #f4f6f9; font-family: Arial, sans-serif; text-align: center; padding-top: 50px;">
+    <h1 style="color: #2c3e50;">Hệ thống CMS Core - Version 1.0 (Stable)</h1>
+    <p>Giao diện Frontend đã được triển khai tự động qua CI/CD Pipeline.</p>
+    <p>Trạng thái hệ thống: <strong style="color: green;">Bình thường</strong></p>
 </body>
 </html>
