@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: cms-97-frontend:latest 
+        #image: cms-97-frontend:latest 
+        image: 283236069347.dkr.ecr.ap-southeast-1.amazonaws.com/sap2506/frontend:latest
         ports:
         - containerPort: 80 # Đã sửa thành 80
         env:
