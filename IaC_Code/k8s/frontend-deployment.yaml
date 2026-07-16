@@ -16,12 +16,25 @@ spec:
     spec:
       containers:
       - name: frontend
-        #image: cms-97-frontend:latest 
         image: 283236069347.dkr.ecr.ap-southeast-1.amazonaws.com/sap2506/frontend:latest
+        imagePullPolicy: Always
         ports:
-        - containerPort: 80 
+        - containerPort: 80
         env:
+        - name: API_URL
+          value: "http://backend-service:8000"
         - name: PRODUCT_CATALOG_SERVICE_ADDR
           value: "http://backend-service:8000"
-        - name: API_URL
+        - name: CURRENCY_SERVICE_ADDR
+          value: "http://backend-service:8000"
+        # Bổ sung sẵn các biến này để chặn đứng lỗi panic ở các dòng code tiếp theo
+        - name: CART_SERVICE_ADDR
+          value: "http://backend-service:8000"
+        - name: RECOMMENDATION_SERVICE_ADDR
+          value: "http://backend-service:8000"
+        - name: SHIPPING_SERVICE_ADDR
+          value: "http://backend-service:8000"
+        - name: CHECKOUT_SERVICE_ADDR
+          value: "http://backend-service:8000"
+        - name: AD_SERVICE_ADDR
           value: "http://backend-service:8000"
