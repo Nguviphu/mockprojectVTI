@@ -27,7 +27,6 @@ spec:
           value: "http://backend-service:8000"
         - name: CURRENCY_SERVICE_ADDR
           value: "http://backend-service:8000"
-        # Bổ sung sẵn các biến này để chặn đứng lỗi panic ở các dòng code tiếp theo
         - name: CART_SERVICE_ADDR
           value: "http://backend-service:8000"
         - name: RECOMMENDATION_SERVICE_ADDR
@@ -37,4 +36,6 @@ spec:
         - name: CHECKOUT_SERVICE_ADDR
           value: "http://backend-service:8000"
         - name: AD_SERVICE_ADDR
+          value: "http://backend-service:8000"
+        - name: SHOPPING_ASSISTANT_SERVICE_ADDR
           value: "http://backend-service:8000"
