@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cms-frontend-ingress
+  namespace: default # Đổi tên namespace nếu bạn đang chạy ở namespace khác
+  annotations:
+    # Chỉ định dùng AWS Application Load Balancer (ALB)
+    kubernetes.io/ingress.class: alb
+    # Đặt là internet-facing để ALB có Public IP, truy cập được từ bên ngoài
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    # Sử dụng IP mode (hoạt động tốt nhất với AWS VPC CNI trên EKS)
+    alb.ingress.kubernetes.io/target-type: ip
+    # Mở port 80 cho HTTP (sau này có thể cấu hình thêm 443 cho HTTPS)
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-service # Tên trùng khớp với file frontend-service.yaml của bạn
+                port:
+                  number: 80 # Port mà frontend-service đang mở
