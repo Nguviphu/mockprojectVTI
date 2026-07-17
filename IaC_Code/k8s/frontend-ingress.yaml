@@ -13,6 +13,7 @@ metadata:
     # Mở port 80 cho HTTP (sau này có thể cấu hình thêm 443 cho HTTPS)
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
 spec:
+  ingressClassName: alb
   rules:
     - http:
         paths:
